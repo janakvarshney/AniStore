@@ -2,5 +2,13 @@
         "typescript.experimental.expandableHover": true,
         "typescript.experimental.updateImportsOnPaste": true,
         "cmake.allowCommentsInPresetsFile": true,
-        "cmake.allowUnsupportedPresetsVersions": true
+        "cmake.allowUnsupportedPresetsVersions": true,
+        "cSpell.words": [
+                "Bottomwear",
+                "Relavent",
+                "relavet",
+                "setshow",
+                "Topwear",
+                "Winterwear"
+        ]
 }
