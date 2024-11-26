@@ -6,12 +6,12 @@ import ProductItem from '../components/ProductItem';
 
 const Collections = () => {
 
-  const { products , search , showSearch} = useContext(ShopContext);
+  const { products, search, showSearch } = useContext(ShopContext);
   const [showFilter, setShowFilter] = useState(false);
   const [filterProducts, setFilterProducts] = useState([]);
   const [category, setCategory] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
-  const [sortType,setSortType] = useState('relavent')
+  const [sortType, setSortType] = useState('relavent')
 
   const toggleCategory = (e) => {
     if (category.includes(e.target.value)) {
@@ -35,7 +35,7 @@ const Collections = () => {
   const applyFilter = () => {
     let productsCopy = products.slice();
 
-    if(search && showSearch) {
+    if (search && showSearch) {
       productsCopy = productsCopy.filter(item => item.name.toLowerCase().includes(search.toLowerCase()))
     }
 
@@ -51,32 +51,32 @@ const Collections = () => {
   }
 
 
-const sortProduct = () => {
-  let fpCopy = products.slice() ;
+  const sortProduct = () => {
+    let fpCopy = products.slice();
 
-  switch(sortType){
-    case 'low-high' :
-      setFilterProducts(fpCopy.sort((a,b)=>(a.price - b.price)));
-      break ;
-      
-    case 'high-low' : 
-      setFilterProducts(fpCopy.sort((a,b)=>(b.price  - a.price)));
-      break ;
-     
-    default : 
-    applyFilter();
-    break ;
+    switch (sortType) {
+      case 'low-high':
+        setFilterProducts(fpCopy.sort((a, b) => (a.price - b.price)));
+        break;
 
+      case 'high-low':
+        setFilterProducts(fpCopy.sort((a, b) => (b.price - a.price)));
+        break;
+
+      default:
+        applyFilter();
+        break;
+
+    }
   }
-}
 
   useEffect(() => {
     applyFilter();
-  }, [category, subCategory, search , showSearch])
+  }, [category, subCategory, search, showSearch])
 
   useEffect(() => {
     sortProduct();
-  },[sortType])
+  }, [sortType])
 
   return (
     <div className='flex flex-col gap-1 border-t sm:gap-10 sm:flex-row pt-10'>

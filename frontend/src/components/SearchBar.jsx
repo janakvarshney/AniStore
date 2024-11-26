@@ -1,20 +1,20 @@
-import React,{useContext, useState, useEffect} from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 import { assets } from '../assets/assets';
 import { ShopContext } from '../context/ShopContext';
 
 const SearchBar = () => {
         const { search, setSearch, showSearch, setShowSearch } = useContext(ShopContext);
-        const location = useLocation() ;
-        const [visible,setVisible] = useState(false) ;
-        useEffect(()=>{
-                if(location.pathname.includes('collection') && showSearch){
-                        setVisible(true) ;
+        const location = useLocation();
+        const [visible, setVisible] = useState(false);
+        useEffect(() => {
+                if (location.pathname.includes('collection') && showSearch) {
+                        setVisible(true);
                 }
-                else{
+                else {
                         setVisible(false);
                 }
-        },[location])
+        }, [location])
 
         return showSearch && visible ? (
                 <div className='border-t border-b bg-gray-50 text-center'>
