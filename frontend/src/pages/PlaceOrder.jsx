@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { assets } from '../assets/assets';
 import CartTotal from '../Components/CartTotal';
 import Title from '../Components/Title';
-import { ShopContext } from '../context/ShopContext';
+import { ShopContext } from '../Context/ShopContext';
 
 const PlaceOrder = () => {
   const [paymentMethod, setPaymentMethod] = useState('cod');
@@ -122,7 +122,7 @@ const PlaceOrder = () => {
               ></p>
               <p className="text-gray-500 text-sm font-medium mx-4">
                 {' '}
-                CASH ON DELIVERY
+                CASH ON DELIVARY
               </p>
             </div>
           </div>
