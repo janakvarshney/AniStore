@@ -1,5 +1,6 @@
 import { v2 as cloudinary } from 'cloudinary';
 import Product from '../models/productModel.js';
+import productModel from '../models/productModel.js';
 
 //function to add product
 const addProduct = async (req, res) => {
@@ -46,18 +47,64 @@ const addProduct = async (req, res) => {
 }
 //function to list all products 
 const listProducts = async (req, res) => {
+        try {
+                const products = await Product.find({});
+                res.JSON({ success: true, products });
+                
+        } catch (error) {
+                console.log(error);
+                res.JSON({ success: false, message: error.message });
+                
+        }
 
 }
 
 //function to remove products 
 const removeProducts = async (req, res) => {
+        try {
+                await productModel.findByIdAndDelete(req.body.id);
+                res.json({ success: true, message: 'Product removed successfully' });
+                
+        } catch (error) {
+                console.log(error);
+                res.json({ success: false, message: error.message });
+                
+        }
 
 }
 
 //function to single product info 
 const singleProductInfo = async (req, res) => {
+        try {
+                const {productId} = req.body
+                const product = await productModel.findById(productId);
+                res.json({ success: true, product });
+
+        } catch (error) {
+                console.log(error);
+                res.json({ success: false, message: error.message });
+                
+        }
 
 }
+//route for admin login
+const adminLogin = async (req, res) => {
+        try {
+                const { email, password } = req.body;
+                if(email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
+                        const token = jwt.sign(email+password, process.env.JWT_SECRET);
+                        res.json({ success: true, token });
+                }
+                else{
+                        res.json({ success: false, message: 'Invalid credentials' });
+                }
+                
+        } catch (error) {
+                console.log(error);
+                res.json({ success: false, message: error.message });
+        }
+
+};
 
 export { addProduct, listProducts, removeProducts, singleProductInfo };
 
